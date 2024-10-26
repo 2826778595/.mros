@@ -1,0 +1,12 @@
+
+echo "请输入指令进行选择: 启动leida.py文件(1) 启动雷达(2) agent(3) rviz2(4) :"
+read choose
+case $choose in
+1) python3 fishbot/src/ydlidar_ros2/startup/xunichuankou.py;;
+2) source fishbot/install/setup.bash
+ros2 launch ydlidar ydlidar_launch.py;;
+3) sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6;;
+4) rviz2;;
+
+esac
+

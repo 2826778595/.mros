@@ -1,0 +1,12 @@
+
+echo "请输入指令选择雷达建图操作: 启动雷达服务(1) 运行McroROS服务(2) 键盘控制小车(3) 保存地图(4) 重编译(5):"
+read choose
+case $choose in
+1) xhost + && sudo docker run  -it --rm  -v /dev:/dev -v /dev/shm:/dev/shm --privileged  -v /tmp/.X11-unix:/tmp/.X11-unix --device /dev/snd -e DISPLAY=unix$DISPLAY -p 8889:8888 registry.cn-hangzhou.aliyuncs.com/fishros/fishbot_laser;;
+2) sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6;;
+3) ros2 run teleop_twist_keyboard teleop_twist_keyboard;;
+4) ros2 run nav2_map_server map_saver_cli -t map -f fishbot_map
+echo "请将两个刚保存的fishbot_map文件放入 fishbot/src/fishbot_navigation2/maps 文件夹" ;;
+5) cd fishbot
+colcon build;;
+esac

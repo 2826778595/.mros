@@ -1,0 +1,14 @@
+
+echo -e "\033[34m主人，您好，接下来将为您解决双系统时间不一致问题。\033[0m"
+echo -e "\033[34m我先后运行了以下代码:\033[0m"
+echo -e "\033[32msudo apt-get install ntpdate\033[0m"
+echo -e "\033[32msudo ntpdate time.windows.com\033[0m"
+echo -e "\033[32msudo hwclock --localtime --systohc\033[0m"
+
+sudo apt-get install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc
+
+echo -e "\033[34m代码运行结束了哦。\033[0m"
+echo -e "\033[34m舍不得你，是我真情的告白。\033[0m"
+echo -e "\033[34m下次再见哦。\033[0m"

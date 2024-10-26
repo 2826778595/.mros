@@ -1,0 +1,5 @@
+
+echo 主人，您好，接下来将为您打开配置助手：
+xhost + && sudo docker run -it --rm --privileged -v /dev:/dev -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY fishros2/fishbot-tool:v1.0.0.20240219 python3 main.py
+
+

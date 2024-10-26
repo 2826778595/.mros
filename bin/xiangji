@@ -1,0 +1,10 @@
+
+echo "请输入指令选择开始相机操作: 打开相机(1) 打开rqt(2) 运行YOLO5:"
+read choose
+case $choose in
+1) source ~/fishbot/install/setup.bash
+ros2 run fishbot_camera camera_driver;;
+2) rqt;;
+3) source fishbot/install/setup.bash
+ros2 run yolov5_ros2 yolo_detect_2d --ros-args -p device:=cpu -p image_topic:=/fishbot_camera_raw;;
+esac

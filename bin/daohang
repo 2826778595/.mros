@@ -1,0 +1,14 @@
+
+echo "请输入指令选择开始导航操作: 启动雷达服务(1) 运行McroROS服务(2) 启动bringup(3) 启动导航(4) :"
+read choose
+case $choose in
+1) xhost + && sudo docker run  -it --rm  -v /dev:/dev -v /dev/shm:/dev/shm --privileged  -v /tmp/.X11-unix:/tmp/.X11-unix --device /dev/snd -e DISPLAY=unix$DISPLAY -p 8889:8888 registry.cn-hangzhou.aliyuncs.com/fishros/fishbot_laser;;
+2) sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6;;
+3) cd fishbot/
+source install/setup.bash
+ros2 launch fishbot_bringup fishbot_bringup.launch.py;;
+4) cd fishbot/
+source install/setup.bash
+ros2 launch fishbot_navigation2 navigation2.launch.py;;
+esac
+

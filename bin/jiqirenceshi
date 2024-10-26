@@ -1,0 +1,23 @@
+
+echo "请输入指令选择开始机器人巡检操作: 创建虚拟接口(1) 图像检测(2) 运行McroROS服务(3) 启动bringup(4) 启动导航(5) 启动雷达(6) 应用(7):"
+read choose
+case $choose in
+1) python3 xunichuankou.py;;
+2) cd fishbot/
+source install/setup.bash
+ros2 launch qidong_rclpy yolo5_camera.launch.py;;
+3) sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6;;
+4) cd fishbot/
+source install/setup.bash
+ros2 launch fishbot_bringup fishbot_bringup.launch.py;;
+5) cd fishbot/
+source install/setup.bash
+ros2 launch fishbot_navigation2 navigation2.launch.py;;
+6) cd fishbot/
+source install/setup.bash
+ros2 launch ydlidar ydlidar_ros2.launch.py;;
+7) cd initial_pose_ws_xianchang/
+source install/setup.bash
+ros2 run initial_pose_publisher_rclpy pose;;
+esac
+
